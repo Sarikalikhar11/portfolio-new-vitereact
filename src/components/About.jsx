@@ -1,4 +1,5 @@
 import girlImage1 from '../assets/girl1.png';
+import { Link } from 'react-router-dom';
 
 const About = () => {
   return (
@@ -31,12 +32,12 @@ const About = () => {
               making a positive impact.
             </p>
             <div className="about-contact mt-5">
-              <a
-                href=""
+              <Link
+                to="/contact"
                 className="cursor-pointer text-decoration-none text-black-100 fw-semibold text-bg-warning rounded-pill px-3 py-2"
               >
                 Read More...
-              </a>
+              </Link>
             </div>
           </div>
         </div>

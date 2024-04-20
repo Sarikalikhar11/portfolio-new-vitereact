@@ -1,18 +1,37 @@
-import React from 'react';
+import React, { useRef, useState } from 'react';
+import { Link } from 'react-router-dom';
+import Resume from '../assets/Frontend-new.pdf';
 
 const Navbar = () => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const home = useRef(null);
+  const about = useRef(null);
+  const expertise = useRef(null);
+  const portfolio = useRef(null);
+  const services = useRef(null);
+  const contact = useRef(null);
+
+  const scrollToPage = (ele) => {
+    window.scroll({
+      top: ele.current.offsetTop,
+      behavior: 'smooth',
+    });
+  };
+
   return (
     <>
       <nav className="navbar navbar-expand-lg bg-light">
         <div className="container-fluid">
-          <a
+          <Link
             className="navbar-brand text-warning fs-3"
-            href="/"
+            to="/"
             style={{ fontFamily: 'Lobster', color: '#f6460b' }}
           >
             Sarika
-          </a>
+          </Link>
           <button
+            onClick={() => setIsOpen(!isOpen)}
             className="navbar-toggler"
             type="button"
             data-bs-toggle="collapse"
@@ -27,50 +46,79 @@ const Navbar = () => {
             className="collapse navbar-collapse menu-item"
             id="navbarSupportedContent"
           >
-            <div className="navbar-nav gap-5 me-auto mb-2 mb-lg-0">
-              <a
+            <div
+              className={`${
+                isOpen ? 'block' : 'hidden'
+              } navbar-nav gap-5 me-auto mb-2 mb-lg-0`}
+            >
+              <Link
+                onClick={() => scrollToPage(home)}
                 className="active text-warning fw-bold text-decoration-none link-underline-warning"
                 style={{
                   ':hover': {
                     color: '#fd7e14',
                   },
                 }}
-                href="/"
+                ref={home}
+                to="/"
               >
                 Home
-              </a>
-              <a
+              </Link>
+              <Link
+                onClick={() => scrollToPage(about)}
                 className="text-black text-decoration-none"
-                href="/about"
+                to="/about"
                 style={{
                   ':hover': {
                     color: '#fd7e14',
                   },
                 }}
+                ref={about}
               >
                 About
-              </a>
-              <a className="text-black text-decoration-none" href="/expertise">
+              </Link>
+              <Link
+                onClick={() => scrollToPage(expertise)}
+                className="text-black text-decoration-none"
+                to="/expertise"
+                ref={expertise}
+              >
                 Expertise
-              </a>
-              <a className="text-black text-decoration-none" href="/portfolio">
+              </Link>
+              <Link
+                onClick={() => scrollToPage(portfolio)}
+                className="text-black text-decoration-none"
+                to="/portfolio"
+                ref={portfolio}
+              >
                 Portfolio
-              </a>
-              <a className="text-black text-decoration-none" href="/services">
+              </Link>
+              <Link
+                onClick={() => scrollToPage(services)}
+                className="text-black text-decoration-none"
+                to="/services"
+                ref={services}
+              >
                 Services
-              </a>
-              <a className="text-black text-decoration-none" href="/contact">
+              </Link>
+              <Link
+                onClick={() => scrollToPage(contact)}
+                className="text-black text-decoration-none"
+                to="/contact"
+                ref={contact}
+              >
                 Contact
-              </a>
+              </Link>
             </div>
-            <form className="d-flex" role="search">
+
+            <Link to={Resume} target="_blank" rel="noreferrer">
               <button
                 className="btn btn-outline-warning text-black fw-bold"
                 type="submit"
               >
                 Download CV
               </button>
-            </form>
+            </Link>
           </div>
         </div>
       </nav>
