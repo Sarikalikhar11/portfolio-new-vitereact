@@ -1,10 +1,58 @@
 import bannerImage from '../assets/girl.png';
 import bannerBackground from '../assets/banner_wallpaper.svg';
 import Typed from 'typed.js';
-import { useEffect, useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
+import { FaFacebook } from 'react-icons/fa';
+import { FaGithub } from 'react-icons/fa';
+import { FaInstagramSquare } from 'react-icons/fa';
+import { FaLinkedin } from 'react-icons/fa';
+import { FaTwitterSquare } from 'react-icons/fa';
 
 const Home = () => {
   const el = useRef(null);
+
+  const socLinks = [
+    {
+      id: 1,
+      links: 'www.facebook.com',
+      icon: FaFacebook,
+      style: {
+        fontSize: '25px',
+      },
+    },
+    {
+      id: 2,
+      links: 'https://github.com/Sarikalikhar11',
+      icon: FaGithub,
+      style: {
+        fontSize: '25px',
+      },
+    },
+    {
+      id: 3,
+      links: 'www.instagram.com',
+      icon: FaInstagramSquare,
+      style: {
+        fontSize: '25px',
+      },
+    },
+    {
+      id: 4,
+      links: 'https://www.linkedin.com/in/sarika-likhar-53ab86b3/',
+      icon: FaLinkedin,
+      style: {
+        fontSize: '25px',
+      },
+    },
+    {
+      id: 5,
+      links: 'https://twitter.com/sarika_likhar',
+      icon: FaTwitterSquare,
+      style: {
+        fontSize: '25px',
+      },
+    },
+  ];
 
   useEffect(() => {
     const typed = new Typed(el.current, {
@@ -63,36 +111,17 @@ const Home = () => {
                 industry trends. Passionate about making a positive impact.
               </p>
               <div className="soc-icon flex flex-wrap gap-5 justify-content-center ps-5 pe-5">
-                <a
-                  href=""
-                  className="cursor-pointer text-decoration-none text-bg-dark m-3 rounded-circle"
-                >
-                  <i className="ri-facebook-circle-fill"></i>
-                </a>
-                <a
-                  href=""
-                  className="cursor-pointer text-decoration-none text-bg-dark m-3 rounded-circle"
-                >
-                  <i className="ri-whatsapp-fill"></i>
-                </a>
-                <a
-                  href=""
-                  className="cursor-pointer text-decoration-none text-bg-dark m-3 rounded-circle"
-                >
-                  <i className="ri-instagram-fill"></i>
-                </a>
-                <a
-                  href=""
-                  className="cursor-pointer text-decoration-none text-bg-dark m-3 rounded-circle"
-                >
-                  <i className="ri-linkedin-box-fill"></i>
-                </a>
-                <a
-                  href=""
-                  className="cursor-pointer text-decoration-none text-bg-dark m-3 rounded-circle"
-                >
-                  <i className="ri-twitter-fill"></i>
-                </a>
+                {socLinks.map(({ id, links, icon, style }) => (
+                  <a
+                    style={style}
+                    key={id}
+                    href={links}
+                    target="_blank"
+                    className="cursor-pointer text-decoration-none text-bg-dark m-3 rounded-circle"
+                  >
+                    {React.createElement(icon)}
+                  </a>
+                ))}
               </div>
               <div className="contact-btn mt-5 ps-5 pe-5">
                 <a
